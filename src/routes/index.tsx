@@ -1,24 +1,47 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import p1 from "@/assets/photo-1.png.asset.json";
-import p2 from "@/assets/photo-2.png.asset.json";
-import p3 from "@/assets/photo-3.png.asset.json";
-import p4 from "@/assets/photo-4.png.asset.json";
-import p5 from "@/assets/photo-5.png.asset.json";
-import p6 from "@/assets/photo-6.png.asset.json";
-import p7 from "@/assets/photo-7.png.asset.json";
-import p8 from "@/assets/photo-8.png.asset.json";
-import p9 from "@/assets/photo-9.png.asset.json";
-import p10 from "@/assets/photo-10.png.asset.json";
+import {
+  ArrowDown,
+  ArrowRight,
+  Bath,
+  BedDouble,
+  Car,
+  ChevronLeft,
+  ChevronRight,
+  Clock3,
+  Droplets,
+  Fan,
+  HeartHandshake,
+  Landmark,
+  MapPin,
+  Menu,
+  MessageCircle,
+  ShieldCheck,
+  Sparkles,
+  UtensilsCrossed,
+  X,
+} from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+
+const photo = (number: number) => `/images/suntar-photo-${number}.png`;
+const whatsappHref =
+  "https://wa.me/?text=Jai%20Jinendra%2C%20I%20would%20like%20to%20enquire%20about%20a%20stay%20at%20Suntar%20Bhavan%2C%20Palitana.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Suntar Bhavan — Jain Dharamshala at Taleti, Palitana" },
-      { name: "description", content: "AC & Non-AC rooms, Bhojanshala and temple at the foot of Shatrunjay hills, Hastgiri Road, Taleti, Palitana." },
-      { property: "og:title", content: "Suntar Bhavan — Jain Dharamshala, Palitana" },
-      { property: "og:description", content: "Peaceful, clean and affordable stay for pilgrims at Taleti, Palitana." },
+      { title: "Suntar Bhavan | Jain Dharamshala in Palitana" },
+      {
+        name: "description",
+        content:
+          "A peaceful Jain dharamshala at Taleti, Palitana with AC and non-AC rooms, Bhojanshala, temple and pilgrim-friendly facilities.",
+      },
+      { property: "og:title", content: "Suntar Bhavan — A peaceful stay in Palitana" },
+      {
+        property: "og:description",
+        content: "Clean rooms, Jain bhojan and warm seva near the sacred Shatrunjaya hills.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "/images/suntar-photo-3.png" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
@@ -26,142 +49,475 @@ export const Route = createFileRoute("/")({
 });
 
 const slides = [
-  { src: p3.url, kicker: "સુનતર ભવન", title: "A serene stay at the foot of Shatrunjay", sub: "Hastgiri Road, Taleti, Palitana" },
-  { src: p1.url, kicker: "Since 2021", title: "Clean, calm & affordable lodging", sub: "For every yatri visiting Palitana" },
-  { src: p7.url, kicker: "Celebrations", title: "Grand courtyards for sangh & utsav", sub: "Lit, spacious and welcoming" },
-  { src: p5.url, kicker: "Inside", title: "Halls crafted with devotion", sub: "Indoor seating & luggage assistance" },
+  {
+    src: photo(3),
+    title: "A peaceful beginning to your Palitana yatra.",
+    copy: "Clean rooms, Jain bhojan and heartfelt seva at the foot of Shatrunjaya.",
+  },
+  {
+    src: photo(1),
+    title: "Rest well. Rise ready for darshan.",
+    copy: "A calm, pilgrim-first stay on Hastgiri Road, close to Taleti.",
+  },
+  {
+    src: photo(7),
+    title: "Space for sangh, family and celebration.",
+    copy: "Welcoming courtyards and halls for moments shared together.",
+  },
+  {
+    src: photo(5),
+    title: "Simple comforts, thoughtfully cared for.",
+    copy: "Indoor seating, luggage assistance and warm hospitality throughout your stay.",
+  },
 ];
 
-const gallery = [p10, p2, p4, p6, p8, p9];
+const services = [
+  { icon: BedDouble, title: "AC & non-AC rooms", text: "Comfortable options for every yatri." },
+  { icon: Bath, title: "Attached bathrooms", text: "Clean, private and convenient." },
+  { icon: Droplets, title: "24-hour water", text: "Hot and cold water available." },
+  { icon: UtensilsCrossed, title: "Jain Bhojanshala", text: "Fresh meals at fixed timings." },
+  { icon: Landmark, title: "Temple", text: "A quiet space for prayer and reflection." },
+  { icon: Car, title: "Free parking", text: "Easy access for families and sanghs." },
+  { icon: HeartHandshake, title: "Luggage assistance", text: "Helpful support when you arrive." },
+  { icon: ShieldCheck, title: "Safe & peaceful", text: "A respectful pilgrim environment." },
+];
 
-function Slider() {
-  const [i, setI] = useState(0);
-  useEffect(() => {
-    const t = setInterval(() => setI((v) => (v + 1) % slides.length), 6000);
-    return () => clearInterval(t);
-  }, []);
-  const s = slides[i]!;
+function Brand({ light = false }: { light?: boolean }) {
   return (
-    <section className="relative h-[100svh] min-h-[560px] overflow-hidden bg-maroon">
-      {slides.map((sl, k) => (
-        <img key={k} src={sl.src} alt={sl.title}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1400ms] ${k === i ? "opacity-100 ken-burns" : "opacity-0"}`} />
-      ))}
-      <div className="absolute inset-0 hero-shade" />
-      <header className="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-6 py-6 md:px-12 text-primary-foreground">
-        <div className="text-lg font-bold tracking-tight">Suntar Bhavan</div>
-        <nav className="hidden gap-8 text-sm md:flex">
-          <a href="#rooms" className="opacity-80 hover:opacity-100">Rooms</a>
-          <a href="#bhojan" className="opacity-80 hover:opacity-100">Bhojanshala</a>
-          <a href="#gallery" className="opacity-80 hover:opacity-100">Gallery</a>
-          <a href="#visit" className="opacity-80 hover:opacity-100">Visit</a>
-        </nav>
-      </header>
-      <div key={i} className="absolute inset-x-0 bottom-0 z-10 px-6 pb-20 md:px-12 md:pb-24 text-primary-foreground">
-        <p className="rise text-sm uppercase tracking-[0.3em] text-saffron">{s.kicker}</p>
-        <h1 className="rise mt-4 max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight md:text-7xl" style={{ animationDelay: "120ms" }}>{s.title}</h1>
-        <p className="rise mt-5 text-lg opacity-85" style={{ animationDelay: "240ms" }}>{s.sub}</p>
-      </div>
-      <div className="absolute bottom-8 right-6 z-10 flex items-center gap-3 md:right-12">
-        {slides.map((_, k) => (
-          <button key={k} aria-label={`Slide ${k + 1}`} onClick={() => setI(k)}
-            className={`h-1 rounded-full transition-all ${k === i ? "w-12 bg-saffron" : "w-6 bg-primary-foreground/50"}`} />
+    <a href="#home" className="brand" aria-label="Suntar Bhavan home">
+      <img src="/images/suntar-bhavan-mark.png" alt="" className="brand-mark" />
+      <span>
+        <strong className={light ? "text-white" : "text-maroon"}>Suntar Bhavan</strong>
+        <small className={light ? "text-white/70" : "text-muted-foreground"}>
+          Palitana · Since 2021
+        </small>
+      </span>
+    </a>
+  );
+}
+
+function Header() {
+  const [open, setOpen] = useState(false);
+  const links = [
+    ["Stay", "#rooms"],
+    ["Bhojanshala", "#bhojanshala"],
+    ["Facilities", "#facilities"],
+    ["Gallery", "#gallery"],
+    ["Visit", "#visit"],
+  ];
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  return (
+    <header className="site-header">
+      <Brand />
+      <nav className="desktop-nav" aria-label="Main navigation">
+        {links.map(([label, href]) => (
+          <a key={href} href={href}>
+            {label}
+          </a>
         ))}
+      </nav>
+      <a href={whatsappHref} target="_blank" rel="noreferrer" className="header-cta">
+        <MessageCircle size={18} /> Enquire
+      </a>
+      <button
+        className="menu-button"
+        onClick={() => setOpen(true)}
+        aria-label="Open navigation"
+        aria-expanded={open}
+      >
+        <Menu />
+      </button>
+
+      <div className={`mobile-menu ${open ? "is-open" : ""}`} aria-hidden={!open}>
+        <div className="mobile-menu-head">
+          <Brand light />
+          <button onClick={() => setOpen(false)} aria-label="Close navigation">
+            <X />
+          </button>
+        </div>
+        <nav aria-label="Mobile navigation">
+          {links.map(([label, href], index) => (
+            <a key={href} href={href} onClick={() => setOpen(false)}>
+              <span>0{index + 1}</span>
+              {label}
+              <ArrowRight />
+            </a>
+          ))}
+        </nav>
+        <a href={whatsappHref} target="_blank" rel="noreferrer" className="mobile-whatsapp">
+          <MessageCircle /> WhatsApp enquiry
+        </a>
+      </div>
+    </header>
+  );
+}
+
+function Hero() {
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    const timer = window.setInterval(
+      () => setActive((current) => (current + 1) % slides.length),
+      6500,
+    );
+    return () => window.clearInterval(timer);
+  }, []);
+  const go = (next: number) => setActive((next + slides.length) % slides.length);
+
+  return (
+    <section id="home" className="hero" aria-roledescription="carousel">
+      {slides.map((slide, index) => (
+        <img
+          key={slide.src}
+          src={slide.src}
+          alt=""
+          className={`hero-image ${index === active ? "is-active" : ""}`}
+          aria-hidden={index !== active}
+        />
+      ))}
+      <div className="hero-overlay" />
+      <div className="hero-content" key={active}>
+        <p className="hero-kicker">
+          <Sparkles size={16} /> સુનતર ભવન · પાલીતાણા
+        </p>
+        <h1>{slides[active].title}</h1>
+        <p className="hero-copy">{slides[active].copy}</p>
+        <div className="hero-actions">
+          <a href={whatsappHref} target="_blank" rel="noreferrer" className="button button-gold">
+            <MessageCircle size={19} /> Enquire on WhatsApp
+          </a>
+          <a href="#rooms" className="button button-ghost">
+            Explore the stay <ArrowDown size={18} />
+          </a>
+        </div>
+      </div>
+      <div className="slider-controls">
+        <button onClick={() => go(active - 1)} aria-label="Previous image">
+          <ChevronLeft />
+        </button>
+        <span>
+          <strong>0{active + 1}</strong> / 0{slides.length}
+        </span>
+        <button onClick={() => go(active + 1)} aria-label="Next image">
+          <ChevronRight />
+        </button>
+      </div>
+      <div className="hero-location">
+        <MapPin size={18} /> Hastgiri Road, Taleti, Palitana
       </div>
     </section>
   );
 }
 
+const welcomeImages = [
+  { src: photo(10), alt: "Suntar Bhavan courtyard in Palitana" },
+  { src: photo(7), alt: "Suntar Bhavan gathering courtyard" },
+  { src: photo(1), alt: "Suntar Bhavan exterior and entrance" },
+];
+
+function WelcomeCarousel() {
+  const [active, setActive] = useState(0);
+  const dragStart = useRef<number | null>(null);
+  const go = (next: number) => setActive((next + welcomeImages.length) % welcomeImages.length);
+
+  return (
+    <div className="welcome-visual">
+      <div
+        className="welcome-slider"
+        onPointerDown={(event) => {
+          dragStart.current = event.clientX;
+          event.currentTarget.setPointerCapture(event.pointerId);
+        }}
+        onPointerUp={(event) => {
+          if (dragStart.current === null) return;
+          const distance = event.clientX - dragStart.current;
+          if (Math.abs(distance) > 45) go(active + (distance < 0 ? 1 : -1));
+          dragStart.current = null;
+        }}
+        onPointerCancel={() => {
+          dragStart.current = null;
+        }}
+        aria-roledescription="carousel"
+        aria-label="Suntar Bhavan property photos"
+      >
+        <div
+          className="welcome-slider-track"
+          style={{ transform: `translateX(-${active * 100}%)` }}
+        >
+          {welcomeImages.map((image, index) => (
+            <img
+              key={image.src}
+              src={image.src}
+              alt={image.alt}
+              draggable={false}
+              aria-hidden={index !== active}
+            />
+          ))}
+        </div>
+        <div className="welcome-slider-controls">
+          <button onClick={() => go(active - 1)} aria-label="Previous property image">
+            <ChevronLeft />
+          </button>
+          <div className="welcome-slider-dots">
+            {welcomeImages.map((image, index) => (
+              <button
+                key={image.src}
+                className={index === active ? "is-active" : ""}
+                onClick={() => setActive(index)}
+                aria-label={`Show property image ${index + 1}`}
+                aria-current={index === active ? "true" : undefined}
+              />
+            ))}
+          </div>
+          <button onClick={() => go(active + 1)} aria-label="Next property image">
+            <ChevronRight />
+          </button>
+        </div>
+      </div>
+      <div className="since-card">
+        <strong>2021</strong>
+        <span>
+          Welcoming yatris
+          <br />
+          in Palitana
+        </span>
+      </div>
+    </div>
+  );
+}
+
 function Index() {
   return (
-    <main className="bg-background text-foreground">
-      <Slider />
+    <main>
+      <Header />
+      <Hero />
 
-      <section className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:grid-cols-[1.1fr_1fr] md:items-center">
-        <div>
-          <p className="text-sm uppercase tracking-[0.3em] text-primary">Jai Jinendra</p>
-          <h2 className="mt-4 text-3xl font-bold leading-tight md:text-5xl">A home for pilgrims, steps from the sacred Palitana hills.</h2>
-          <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-            Established in 2021, Suntar Bhavan offers clean and affordable rooms with attached bathrooms and
-            24-hour hot & cold water — so your yatra stays peaceful from Navkarshi to Chovihar.
-          </p>
-        </div>
-        <img src={p10.url} alt="Suntar Bhavan courtyard" className="aspect-[4/5] w-full rounded-[2rem] object-cover" />
-      </section>
-
-      <section id="rooms" className="bg-secondary py-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-3xl font-bold md:text-4xl">Rooms</h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {[
-              { n: "Standard", d: "Non Air-Conditioned rooms", img: p2.url },
-              { n: "Deluxe", d: "Air-Conditioned rooms", img: p4.url },
-            ].map((r) => (
-              <article key={r.n} className="group overflow-hidden rounded-[1.5rem] bg-card">
-                <div className="overflow-hidden"><img src={r.img} alt={r.n} className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-105" /></div>
-                <div className="flex items-end justify-between p-7">
-                  <div><h3 className="text-2xl font-bold">{r.n}</h3><p className="mt-1 text-muted-foreground">{r.d}</p></div>
-                  <span className="rounded-full bg-accent px-4 py-1.5 text-sm font-medium text-accent-foreground">Attached bath</span>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="bhojan" className="bg-maroon py-24 text-primary-foreground">
-        <div className="mx-auto max-w-6xl px-6">
-          <p className="text-sm uppercase tracking-[0.3em] text-saffron">Bhojanshala</p>
-          <h2 className="mt-4 max-w-2xl text-3xl font-bold md:text-4xl">Pure Jain meals at set timings, for a nominal per-plate cost.</h2>
-          <div className="mt-14 grid gap-px overflow-hidden rounded-[1.5rem] bg-primary-foreground/15 md:grid-cols-3">
-            {[
-              ["Breakfast", "Navkarshi – 9:15 AM"],
-              ["Lunch", "12:00 PM – 1:15 PM"],
-              ["Dinner", "5:00 PM – Sunset"],
-            ].map(([a, b]) => (
-              <div key={a} className="bg-maroon p-8">
-                <div className="text-sm opacity-70">{a}</div>
-                <div className="mt-3 text-2xl font-bold text-saffron">{b}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 py-24">
-        <h2 className="text-3xl font-bold md:text-4xl">Services</h2>
-        <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
-          {["Free Parking", "Bhojanshala", "Temple", "Hot Water", "Indoor Seating", "Luggage Help", "AC & Non-AC", "24h Water"].map((x, k) => (
-            <div key={x} className="rounded-2xl border border-border bg-card p-6">
-              <div className="text-sm text-primary">0{k + 1}</div>
-              <div className="mt-6 text-lg font-medium">{x}</div>
+      <section className="welcome-section">
+        <div className="welcome section-shell">
+          <div className="welcome-copy">
+            <p className="section-kicker">Jai Jinendra</p>
+            <h2>A home for pilgrims, close to the sacred hills.</h2>
+            <p>
+              Established in 2021, Suntar Bhavan offers a clean, peaceful and affordable stay for
+              yatris visiting Palitana. From Navkarshi to Chovihar, every detail is kept simple so
+              your attention can stay on the yatra.
+            </p>
+            <div className="welcome-signoff">
+              <img src="/images/suntar-bhavan-mark.png" alt="" />
+              <span>
+                <strong>Seva with warmth</strong>
+                <small>For every yatri, every day</small>
+              </span>
             </div>
-          ))}
-        </div>
-      </section>
-
-      <section id="gallery" className="px-6 pb-24">
-        <div className="mx-auto grid max-w-6xl auto-rows-[220px] grid-cols-2 gap-4 md:grid-cols-4">
-          {gallery.map((g, k) => (
-            <img key={k} src={g.url} alt="Suntar Bhavan" loading="lazy"
-              className={`h-full w-full rounded-2xl object-cover ${k === 0 ? "col-span-2 row-span-2" : ""}`} />
-          ))}
-        </div>
-      </section>
-
-      <section id="visit" className="bg-sand py-20">
-        <div className="mx-auto flex max-w-6xl flex-col gap-8 px-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <h2 className="text-3xl font-bold md:text-4xl">Visit us</h2>
-            <p className="mt-4 text-lg">Hastgiri Road, Taleti, Palitana, Gujarat 364270</p>
           </div>
-          <p className="max-w-md rounded-2xl bg-card p-5 text-sm text-muted-foreground">
-            <strong className="text-foreground">Caution:</strong> Beware of advance-payment booking scams from unverified phone numbers online. Confirm directly with the dharamshala.
-          </p>
+          <WelcomeCarousel />
         </div>
       </section>
 
-      <footer className="bg-maroon px-6 py-8 text-center text-sm text-primary-foreground/70">© Suntar Bhavan, Palitana</footer>
+      <section id="rooms" className="rooms-section">
+        <div className="section-shell">
+          <div className="section-heading split-heading">
+            <div>
+              <p className="section-kicker">Rest comfortably</p>
+              <h2>Rooms made for a peaceful pause.</h2>
+            </div>
+            <p>
+              Clean, practical accommodation with attached bathrooms and the essentials a pilgrim
+              needs.
+            </p>
+          </div>
+          <div className="room-grid">
+            <article className="room-card">
+              <img src={photo(2)} alt="Standard non-AC room at Suntar Bhavan" />
+              <div className="room-info">
+                <div>
+                  <span>Simple & airy</span>
+                  <h3>Standard room</h3>
+                </div>
+                <ul>
+                  <li>
+                    <Fan /> Non-AC
+                  </li>
+                  <li>
+                    <Bath /> Attached bath
+                  </li>
+                </ul>
+              </div>
+            </article>
+            <article className="room-card room-card-offset">
+              <img src={photo(4)} alt="Deluxe air-conditioned room at Suntar Bhavan" />
+              <div className="room-info">
+                <div>
+                  <span>Cool & comfortable</span>
+                  <h3>Deluxe room</h3>
+                </div>
+                <ul>
+                  <li>
+                    <Sparkles /> Air-conditioned
+                  </li>
+                  <li>
+                    <Bath /> Attached bath
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </div>
+          <div className="direct-note">
+            <ShieldCheck />
+            <span>
+              <strong>Book directly and safely.</strong> Beware of unverified numbers requesting
+              advance payment.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section id="bhojanshala" className="dining-section">
+        <div className="dining-image">
+          <img src={photo(6)} alt="Jain Bhojanshala at Suntar Bhavan" />
+        </div>
+        <div className="dining-content">
+          <p className="section-kicker light">Jain Bhojanshala</p>
+          <h2>Fresh, satvik meals at the right time.</h2>
+          <p>Simple Jain food is served at fixed timings for a nominal per-plate contribution.</p>
+          <div className="meal-times">
+            <div>
+              <Clock3 />
+              <span>
+                Navkarshi<small>Up to 9:15 AM</small>
+              </span>
+            </div>
+            <div>
+              <Clock3 />
+              <span>
+                Lunch<small>12:00 – 1:15 PM</small>
+              </span>
+            </div>
+            <div>
+              <Clock3 />
+              <span>
+                Chovihar<small>5:00 PM – sunset</small>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="facilities" className="facilities section-shell">
+        <div className="section-heading centered">
+          <p className="section-kicker">Everything that matters</p>
+          <h2>Thoughtful facilities for an easier yatra.</h2>
+        </div>
+        <div className="facility-grid">
+          {services.map(({ icon: Icon, title, text }) => (
+            <article key={title}>
+              <Icon />
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="gallery" className="gallery-section">
+        <div className="section-shell gallery-heading">
+          <div>
+            <p className="section-kicker">A closer look</p>
+            <h2>See Suntar Bhavan.</h2>
+          </div>
+          <p>Rooms, gathering spaces and quiet corners prepared with care.</p>
+        </div>
+        <div className="gallery-grid">
+          {[7, 8, 9, 5, 1].map((number, index) => (
+            <figure key={number} className={`gallery-item gallery-item-${index + 1}`}>
+              <img
+                src={photo(number)}
+                alt={`Suntar Bhavan property view ${index + 1}`}
+                loading="lazy"
+              />
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section id="visit" className="visit-section">
+        <div className="visit-card">
+          <img src="/images/suntar-bhavan-mark.png" alt="" />
+          <p className="section-kicker">Plan your stay</p>
+          <h2>We look forward to welcoming you.</h2>
+          <p className="address">
+            <MapPin /> Hastgiri Road, Taleti,
+            <br />
+            Palitana, Gujarat 364270
+          </p>
+          <div className="visit-actions">
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noreferrer"
+              className="button button-maroon"
+            >
+              <MessageCircle /> WhatsApp enquiry
+            </a>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Hastgiri+Road+Taleti+Palitana+Gujarat+364270"
+              target="_blank"
+              rel="noreferrer"
+              className="text-link"
+            >
+              Open in Google Maps <ArrowRight />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <footer className="footer">
+        <div className="footer-main section-shell">
+          <div>
+            <Brand light />
+            <p>A peaceful Jain stay near the sacred Shatrunjaya hills.</p>
+          </div>
+          <div>
+            <h3>Explore</h3>
+            <a href="#rooms">Rooms</a>
+            <a href="#bhojanshala">Bhojanshala</a>
+            <a href="#facilities">Facilities</a>
+            <a href="#gallery">Gallery</a>
+          </div>
+          <div>
+            <h3>Visit</h3>
+            <p>
+              Hastgiri Road, Taleti
+              <br />
+              Palitana, Gujarat 364270
+            </p>
+            <a href={whatsappHref} target="_blank" rel="noreferrer">
+              WhatsApp enquiry
+            </a>
+          </div>
+        </div>
+        <div className="footer-bottom section-shell">
+          <span>© {new Date().getFullYear()} Suntar Bhavan, Palitana</span>
+          <span>Jai Jinendra</span>
+        </div>
+      </footer>
+
+      <a
+        href={whatsappHref}
+        target="_blank"
+        rel="noreferrer"
+        className="floating-whatsapp"
+        aria-label="Enquire on WhatsApp"
+      >
+        <MessageCircle />
+        <span>WhatsApp</span>
+      </a>
     </main>
   );
 }
