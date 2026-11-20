@@ -1,7 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, MapPin, MessageCircle, ShieldCheck } from "lucide-react";
+import { ArrowRight, Mail, MapPin, MessageCircle, Phone, ShieldCheck } from "lucide-react";
 
-import { PageShell, photo, whatsappHref } from "@/components/site-page";
+import {
+  PageShell,
+  emailAddress,
+  emailHref,
+  mapsEmbedHref,
+  mapsHref,
+  phoneDisplay,
+  phoneHref,
+  photo,
+  whatsappHref,
+} from "@/components/site-page";
 
 export const Route = createFileRoute("/visit")({
   head: () => ({
@@ -15,9 +25,6 @@ export const Route = createFileRoute("/visit")({
   }),
   component: VisitPage,
 });
-
-const mapsHref =
-  "https://www.google.com/maps/search/?api=1&query=Hastgiri+Road+Taleti+Palitana+Gujarat+364270";
 
 function VisitPage() {
   return (
@@ -37,6 +44,22 @@ function VisitPage() {
             <br />
             Palitana, Gujarat 364270
           </p>
+          <div className="visit-direct-contact">
+            <a href={phoneHref}>
+              <Phone />
+              <span>
+                <small>Phone</small>
+                {phoneDisplay}
+              </span>
+            </a>
+            <a href={emailHref}>
+              <Mail />
+              <span>
+                <small>Email</small>
+                {emailAddress}
+              </span>
+            </a>
+          </div>
           <div className="visit-page-actions">
             <a href={mapsHref} target="_blank" rel="noreferrer" className="button button-maroon">
               Open Google Maps <ArrowRight />
@@ -51,8 +74,16 @@ function VisitPage() {
             </a>
           </div>
         </div>
-        <div className="visit-photo">
-          <img src={photo(10)} alt="Suntar Bhavan courtyard" />
+        <div className="visit-page-map">
+          <iframe
+            src={mapsEmbedHref}
+            title="Map showing Suntar Bhavan, Hastgiri Road, Taleti, Palitana"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+          <a href={mapsHref} target="_blank" rel="noreferrer">
+            <MapPin /> Open larger map <ArrowRight />
+          </a>
         </div>
         <div className="page-safety compact">
           <ShieldCheck />

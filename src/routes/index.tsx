@@ -12,9 +12,11 @@ import {
   Fan,
   HeartHandshake,
   Landmark,
+  Mail,
   MapPin,
   Menu,
   MessageCircle,
+  Phone,
   ShieldCheck,
   Sparkles,
   UtensilsCrossed,
@@ -22,9 +24,18 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+import {
+  ContactRail,
+  emailAddress,
+  emailHref,
+  mapsEmbedHref,
+  mapsHref,
+  phoneDisplay,
+  phoneHref,
+  whatsappHref,
+} from "@/components/site-page";
+
 const photo = (number: number) => `/images/suntar-photo-${number}.png`;
-const whatsappHref =
-  "https://wa.me/?text=Jai%20Jinendra%2C%20I%20would%20like%20to%20enquire%20about%20a%20stay%20at%20Suntar%20Bhavan%2C%20Palitana.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -447,32 +458,56 @@ function Index() {
       </section>
 
       <section id="visit" className="visit-section">
-        <div className="visit-card">
-          <img src="/images/suntar-bhavan-mark.png" alt="" />
-          <p className="section-kicker">Plan your stay</p>
-          <h2>We look forward to welcoming you.</h2>
-          <p className="address">
-            <MapPin /> Hastgiri Road, Taleti,
-            <br />
-            Palitana, Gujarat 364270
-          </p>
-          <div className="visit-actions">
-            <a
-              href={whatsappHref}
-              target="_blank"
-              rel="noreferrer"
-              className="button button-maroon"
-            >
-              <MessageCircle /> WhatsApp enquiry
+        <div className="visit-layout section-shell">
+          <div className="visit-map-card">
+            <iframe
+              src={mapsEmbedHref}
+              title="Map showing Suntar Bhavan, Hastgiri Road, Taleti, Palitana"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+            <a href={mapsHref} target="_blank" rel="noreferrer">
+              <MapPin /> Open full map <ArrowRight />
             </a>
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=Hastgiri+Road+Taleti+Palitana+Gujarat+364270"
-              target="_blank"
-              rel="noreferrer"
-              className="text-link"
-            >
-              Open in Google Maps <ArrowRight />
-            </a>
+          </div>
+          <div className="visit-card">
+            <img src="/images/suntar-bhavan-mark.png" alt="" />
+            <p className="section-kicker">Plan your stay</p>
+            <h2>We look forward to welcoming you.</h2>
+            <p className="address">
+              <MapPin /> Hastgiri Road, Taleti,
+              <br />
+              Palitana, Gujarat 364270
+            </p>
+            <div className="visit-contact-list">
+              <a href={phoneHref}>
+                <Phone />{" "}
+                <span>
+                  <small>Call us</small>
+                  {phoneDisplay}
+                </span>
+              </a>
+              <a href={emailHref}>
+                <Mail />{" "}
+                <span>
+                  <small>Email us</small>
+                  {emailAddress}
+                </span>
+              </a>
+            </div>
+            <div className="visit-actions">
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noreferrer"
+                className="button button-maroon"
+              >
+                <MessageCircle /> WhatsApp enquiry
+              </a>
+              <a href="/visit" className="text-link">
+                View contact page <ArrowRight />
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -497,6 +532,8 @@ function Index() {
               <br />
               Palitana, Gujarat 364270
             </p>
+            <a href={phoneHref}>{phoneDisplay}</a>
+            <a href={emailHref}>{emailAddress}</a>
             <a href="/visit">Directions and details</a>
           </div>
         </div>
@@ -506,6 +543,7 @@ function Index() {
         </div>
       </footer>
 
+      <ContactRail />
       <a
         href={whatsappHref}
         target="_blank"

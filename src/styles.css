@@ -881,11 +881,48 @@ h2 {
     linear-gradient(rgb(64 17 12 / 74%), rgb(64 17 12 / 74%)),
     url("/images/suntar-photo-3.png") center / cover fixed;
 }
+.visit-layout {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 28px;
+  align-items: stretch;
+}
+.visit-map-card {
+  min-height: 620px;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  border: 8px solid rgb(255 251 241 / 96%);
+  border-radius: 24px;
+  background: white;
+  box-shadow: 0 24px 80px rgb(24 4 2 / 30%);
+}
+.visit-map-card iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 540px;
+  border: 0;
+  filter: saturate(0.86) contrast(1.02);
+}
+.visit-map-card > a {
+  min-height: 60px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  color: var(--maroon);
+  font-size: 13px;
+  font-weight: 700;
+}
+.visit-map-card > a svg {
+  width: 17px;
+}
 .visit-card {
-  width: min(720px, 100%);
-  margin-inline: auto;
+  width: 100%;
+  margin: 0;
   padding: 58px;
-  text-align: center;
+  text-align: left;
   border-radius: 24px;
   background: rgb(255 251 241 / 95%);
   box-shadow: 0 24px 80px rgb(24 4 2 / 30%);
@@ -897,14 +934,14 @@ h2 {
   margin: -12px auto 12px;
 }
 .visit-card .section-kicker {
-  justify-content: center;
+  justify-content: flex-start;
 }
 .visit-card h2 {
   font-size: clamp(40px, 5vw, 58px);
 }
 .address {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   gap: 10px;
   color: var(--muted-foreground);
@@ -917,7 +954,7 @@ h2 {
 .visit-actions {
   margin-top: 30px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 24px;
 }
@@ -935,6 +972,46 @@ h2 {
 }
 .text-link svg {
   width: 17px;
+}
+.visit-contact-list {
+  margin: 28px 0 0;
+  display: grid;
+  gap: 10px;
+}
+.visit-contact-list a,
+.visit-direct-contact a {
+  min-height: 64px;
+  padding: 11px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--maroon);
+  background: rgb(255 255 255 / 66%);
+  font-size: 13px;
+  font-weight: 700;
+}
+.visit-contact-list a > svg,
+.visit-direct-contact a > svg {
+  width: 20px;
+  color: var(--primary);
+}
+.visit-contact-list span,
+.visit-direct-contact span {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow-wrap: anywhere;
+}
+.visit-contact-list small,
+.visit-direct-contact small {
+  margin-bottom: 3px;
+  color: var(--muted-foreground);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .footer {
@@ -1000,6 +1077,79 @@ h2 {
   box-shadow: 0 9px 28px rgb(0 0 0 / 24%);
   font-size: 13px;
   font-weight: 700;
+}
+.contact-rail {
+  position: fixed;
+  z-index: 44;
+  left: 16px;
+  top: 50%;
+  width: 196px;
+  padding: 6px;
+  display: grid;
+  gap: 4px;
+  transform: translateY(-50%);
+  border: 1px solid rgb(255 255 255 / 70%);
+  border-radius: 15px;
+  background: rgb(255 255 255 / 92%);
+  box-shadow: 0 14px 42px rgb(53 15 9 / 18%);
+  backdrop-filter: blur(14px);
+}
+.contact-rail a {
+  min-height: 48px;
+  padding: 7px 10px;
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: center;
+  gap: 7px;
+  border-radius: 10px;
+  color: var(--maroon);
+  font-size: 12px;
+  font-weight: 700;
+}
+.contact-rail a:hover {
+  background: var(--secondary);
+}
+.contact-rail svg {
+  width: 18px;
+  color: var(--primary);
+}
+.contact-rail span {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-wrap: anywhere;
+}
+.contact-rail small {
+  margin-bottom: 2px;
+  color: var(--muted-foreground);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.mobile-contact-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+.mobile-contact-links a {
+  min-width: 0;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid rgb(255 255 255 / 15%);
+  border-radius: 10px;
+  color: rgb(255 255 255 / 78%);
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.mobile-contact-links svg {
+  width: 16px;
+  flex: 0 0 auto;
+  color: var(--saffron);
 }
 
 /* Independent content pages */
@@ -1302,6 +1452,42 @@ h2 {
   border-radius: 18px;
   box-shadow: 0 26px 70px rgb(73 27 13 / 16%);
 }
+.visit-direct-contact {
+  margin: 24px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.visit-page-map {
+  min-height: 540px;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: white;
+  box-shadow: 0 26px 70px rgb(73 27 13 / 16%);
+}
+.visit-page-map iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 470px;
+  border: 0;
+}
+.visit-page-map > a {
+  min-height: 62px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--maroon);
+  font-size: 13px;
+  font-weight: 700;
+}
+.visit-page-map > a svg {
+  width: 17px;
+}
 .page-safety.compact {
   grid-column: 1 / 3;
   margin-top: 0;
@@ -1408,6 +1594,19 @@ h2 {
   }
   .visit-page-grid {
     gap: 38px;
+  }
+  .contact-rail {
+    display: none;
+  }
+  .visit-layout {
+    grid-template-columns: 1fr;
+    max-width: 760px;
+  }
+  .visit-map-card {
+    min-height: 480px;
+  }
+  .visit-map-card iframe {
+    min-height: 410px;
   }
 }
 
@@ -1631,6 +1830,17 @@ h2 {
     padding: 72px 16px;
     background-attachment: scroll;
   }
+  .visit-layout {
+    width: 100%;
+  }
+  .visit-map-card {
+    min-height: 390px;
+    border-width: 5px;
+    border-radius: 18px;
+  }
+  .visit-map-card iframe {
+    min-height: 325px;
+  }
   .visit-card {
     padding: 36px 20px;
     border-radius: 18px;
@@ -1642,6 +1852,12 @@ h2 {
   .visit-actions {
     flex-direction: column;
     gap: 18px;
+  }
+  .visit-contact-list a {
+    min-height: 58px;
+  }
+  .mobile-contact-links {
+    grid-template-columns: 1fr;
   }
   .visit-actions .button {
     width: 100%;
@@ -1750,6 +1966,16 @@ h2 {
   }
   .visit-photo {
     grid-row: 1;
+  }
+  .visit-direct-contact {
+    grid-template-columns: 1fr;
+  }
+  .visit-page-map {
+    min-height: 430px;
+    grid-row: 1;
+  }
+  .visit-page-map iframe {
+    min-height: 365px;
   }
   .page-safety.compact {
     grid-column: 1;

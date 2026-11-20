@@ -1,9 +1,17 @@
-import { ArrowLeft, ArrowRight, Menu, MessageCircle, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Mail, MapPin, Menu, MessageCircle, Phone, X } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 
 export const photo = (number: number) => `/images/suntar-photo-${number}.png`;
 export const whatsappHref =
-  "https://wa.me/?text=Jai%20Jinendra%2C%20I%20would%20like%20to%20enquire%20about%20a%20stay%20at%20Suntar%20Bhavan%2C%20Palitana.";
+  "https://wa.me/917379349473?text=Jai%20Jinendra%2C%20I%20would%20like%20to%20enquire%20about%20a%20stay%20at%20Suntar%20Bhavan%2C%20Palitana.";
+export const phoneDisplay = "+91 73793 49473";
+export const phoneHref = "tel:+917379349473";
+export const emailAddress = "sk6539985@gmail.com";
+export const emailHref = "mailto:sk6539985@gmail.com";
+export const mapsHref =
+  "https://www.google.com/maps/search/?api=1&query=Hastgiri+Road+Taleti+Palitana+Gujarat+364270";
+export const mapsEmbedHref =
+  "https://www.google.com/maps?q=Hastgiri+Road%2C+Taleti%2C+Palitana%2C+Gujarat+364270&output=embed";
 
 const links = [
   ["Home", "/"],
@@ -78,6 +86,14 @@ function PageHeader() {
         <a href={whatsappHref} target="_blank" rel="noreferrer" className="mobile-whatsapp">
           <MessageCircle /> WhatsApp enquiry
         </a>
+        <div className="mobile-contact-links">
+          <a href={phoneHref}>
+            <Phone /> {phoneDisplay}
+          </a>
+          <a href={emailHref}>
+            <Mail /> {emailAddress}
+          </a>
+        </div>
       </div>
     </header>
   );
@@ -105,6 +121,8 @@ function PageFooter() {
             <br />
             Palitana, Gujarat 364270
           </p>
+          <a href={phoneHref}>{phoneDisplay}</a>
+          <a href={emailHref}>{emailAddress}</a>
           <a href="/visit">Directions and details</a>
         </div>
       </div>
@@ -113,6 +131,33 @@ function PageFooter() {
         <span>Jai Jinendra</span>
       </div>
     </footer>
+  );
+}
+
+export function ContactRail() {
+  return (
+    <aside className="contact-rail" aria-label="Quick contact">
+      <a href={phoneHref} aria-label={`Call ${phoneDisplay}`}>
+        <Phone />
+        <span>
+          <small>Call us</small>
+          {phoneDisplay}
+        </span>
+      </a>
+      <a href={emailHref} aria-label={`Email ${emailAddress}`}>
+        <Mail />
+        <span>
+          <small>Email</small>
+          {emailAddress}
+        </span>
+      </a>
+      <a href={mapsHref} target="_blank" rel="noreferrer" aria-label="Open address in Google Maps">
+        <MapPin />
+        <span>
+          <small>Location</small>Taleti, Palitana
+        </span>
+      </a>
+    </aside>
   );
 }
 
@@ -146,6 +191,7 @@ export function PageShell({
       </section>
       {children}
       <PageFooter />
+      <ContactRail />
       <a
         href={whatsappHref}
         target="_blank"
