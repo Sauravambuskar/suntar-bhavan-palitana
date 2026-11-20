@@ -532,9 +532,19 @@ function Index() {
               <br />
               Palitana, Gujarat 364270
             </p>
-            <a href={phoneHref}>{phoneDisplay}</a>
-            <a href={emailHref}>{emailAddress}</a>
             <a href="/visit">Directions and details</a>
+          </div>
+          <div className="footer-contact">
+            <h3>Contact</h3>
+            <a href={phoneHref}>
+              <Phone /> <span>{phoneDisplay}</span>
+            </a>
+            <a href={emailHref}>
+              <Mail /> <span>{emailAddress}</span>
+            </a>
+            <a href={whatsappHref} target="_blank" rel="noreferrer">
+              <MessageCircle /> <span>WhatsApp enquiry</span>
+            </a>
           </div>
         </div>
         <div className="footer-bottom section-shell">
