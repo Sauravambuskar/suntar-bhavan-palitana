@@ -19,10 +19,7 @@ export default defineConfig({
         },
       },
     }),
-    nitro({
-      preset: "cloudflare-module",
-      cloudflare: { nodeCompat: true, deployConfig: true },
-    }),
+    nitro({ preset: "vercel" }),
     react(),
   ],
   resolve: {
