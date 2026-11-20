@@ -99,11 +99,11 @@ function Brand({ light = false }: { light?: boolean }) {
 function Header() {
   const [open, setOpen] = useState(false);
   const links = [
-    ["Stay", "#rooms"],
-    ["Bhojanshala", "#bhojanshala"],
-    ["Facilities", "#facilities"],
-    ["Gallery", "#gallery"],
-    ["Visit", "#visit"],
+    ["Stay", "/rooms"],
+    ["Bhojanshala", "/bhojanshala"],
+    ["Facilities", "/facilities"],
+    ["Gallery", "/gallery"],
+    ["Visit", "/visit"],
   ];
 
   useEffect(() => {
@@ -192,7 +192,7 @@ function Hero() {
           <a href={whatsappHref} target="_blank" rel="noreferrer" className="button button-gold">
             <MessageCircle size={19} /> Enquire on WhatsApp
           </a>
-          <a href="#rooms" className="button button-ghost">
+          <a href="/rooms" className="button button-ghost">
             Explore the stay <ArrowDown size={18} />
           </a>
         </div>
@@ -485,10 +485,10 @@ function Index() {
           </div>
           <div>
             <h3>Explore</h3>
-            <a href="#rooms">Rooms</a>
-            <a href="#bhojanshala">Bhojanshala</a>
-            <a href="#facilities">Facilities</a>
-            <a href="#gallery">Gallery</a>
+            <a href="/rooms">Rooms</a>
+            <a href="/bhojanshala">Bhojanshala</a>
+            <a href="/facilities">Facilities</a>
+            <a href="/gallery">Gallery</a>
           </div>
           <div>
             <h3>Visit</h3>
@@ -497,9 +497,7 @@ function Index() {
               <br />
               Palitana, Gujarat 364270
             </p>
-            <a href={whatsappHref} target="_blank" rel="noreferrer">
-              WhatsApp enquiry
-            </a>
+            <a href="/visit">Directions and details</a>
           </div>
         </div>
         <div className="footer-bottom section-shell">
