@@ -12,14 +12,25 @@ import {
   photo,
   whatsappHref,
 } from "@/components/site-page";
+import { breadcrumbSchema, seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/visit")({
   head: () => ({
-    meta: [
-      { title: "Visit Suntar Bhavan | Palitana" },
+    ...seoHead({
+      title: "Suntar Bhavan Address & Contact | Palitana",
+      description:
+        "Find Suntar Bhavan on Hastgiri Road near Taleti, Palitana. Get directions and contact us directly by phone, email or WhatsApp.",
+      path: "/visit",
+    }),
+    scripts: [
       {
-        name: "description",
-        content: "Find Suntar Bhavan on Hastgiri Road, Taleti, Palitana and make a direct enquiry.",
+        type: "application/ld+json",
+        children: JSON.stringify(
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Visit & Contact", path: "/visit" },
+          ]),
+        ),
       },
     ],
   }),
@@ -36,7 +47,7 @@ function VisitPage() {
     >
       <section className="page-section section-shell visit-page-grid">
         <div className="visit-details">
-          <img src="/images/suntar-bhavan-mark.png" alt="" />
+          <img src="/images/suntar-bhavan-mark.png" alt="" width={256} height={280} />
           <p className="section-kicker">Suntar Bhavan</p>
           <h2>At the foot of the sacred hills.</h2>
           <p className="visit-address">

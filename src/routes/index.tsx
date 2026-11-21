@@ -34,26 +34,72 @@ import {
   phoneHref,
   whatsappHref,
 } from "@/components/site-page";
+import { seoHead, siteUrl } from "@/lib/seo";
 
-const photo = (number: number) => `/images/suntar-photo-${number}.png`;
+const photo = (number: number) => `/images/suntar-photo-${number}.jpg`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    meta: [
-      { title: "Suntar Bhavan | Jain Dharamshala in Palitana" },
+    ...seoHead({
+      title: "Jain Dharamshala in Palitana | Suntar Bhavan",
+      description:
+        "Peaceful Jain dharamshala near Taleti, Palitana with AC and non-AC rooms, Jain Bhojanshala, temple, parking and direct booking assistance.",
+      path: "/",
+    }),
+    scripts: [
       {
-        name: "description",
-        content:
-          "A peaceful Jain dharamshala at Taleti, Palitana with AC and non-AC rooms, Bhojanshala, temple and pilgrim-friendly facilities.",
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": ["LodgingBusiness", "LocalBusiness"],
+              "@id": `${siteUrl}/#lodging`,
+              name: "Suntar Bhavan",
+              url: siteUrl,
+              image: `${siteUrl}/images/suntar-photo-3.jpg`,
+              logo: `${siteUrl}/images/suntar-bhavan-mark.png`,
+              description:
+                "A peaceful Jain dharamshala offering rooms, Jain meals and pilgrim-friendly facilities near Taleti in Palitana.",
+              foundingDate: "2021",
+              telephone: "+91-73793-49473",
+              email: "sk6539985@gmail.com",
+              priceRange: "₹",
+              currenciesAccepted: "INR",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Hastgiri Road, Taleti",
+                addressLocality: "Palitana",
+                addressRegion: "Gujarat",
+                postalCode: "364270",
+                addressCountry: "IN",
+              },
+              amenityFeature: [
+                "AC and non-AC rooms",
+                "Attached bathrooms",
+                "Jain Bhojanshala",
+                "Temple",
+                "Free parking",
+                "Hot and cold water",
+              ].map((name) => ({ "@type": "LocationFeatureSpecification", name, value: true })),
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+91-73793-49473",
+                contactType: "reservations",
+                availableLanguage: ["English", "Hindi", "Gujarati"],
+              },
+            },
+            {
+              "@type": "WebSite",
+              "@id": `${siteUrl}/#website`,
+              url: siteUrl,
+              name: "Suntar Bhavan",
+              inLanguage: "en-IN",
+              publisher: { "@id": `${siteUrl}/#lodging` },
+            },
+          ],
+        }),
       },
-      { property: "og:title", content: "Suntar Bhavan — A peaceful stay in Palitana" },
-      {
-        property: "og:description",
-        content: "Clean rooms, Jain bhojan and warm seva near the sacred Shatrunjaya hills.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:image", content: "/images/suntar-photo-3.png" },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
@@ -96,7 +142,13 @@ const services = [
 function Brand({ light = false }: { light?: boolean }) {
   return (
     <a href="#home" className="brand" aria-label="Suntar Bhavan home">
-      <img src="/images/suntar-bhavan-mark.png" alt="" className="brand-mark" />
+      <img
+        src="/images/suntar-bhavan-mark.png"
+        alt=""
+        className="brand-mark"
+        width={256}
+        height={280}
+      />
       <span>
         <strong className={light ? "text-white" : "text-maroon"}>Suntar Bhavan</strong>
         <small className={light ? "text-white/70" : "text-muted-foreground"}>
@@ -190,6 +242,11 @@ function Hero() {
           alt=""
           className={`hero-image ${index === active ? "is-active" : ""}`}
           aria-hidden={index !== active}
+          width={1280}
+          height={index === 0 ? 622 : index === 1 ? 758 : 853}
+          loading={index === 0 ? "eager" : "lazy"}
+          fetchPriority={index === 0 ? "high" : "low"}
+          decoding="async"
         />
       ))}
       <div className="hero-overlay" />
@@ -197,8 +254,10 @@ function Hero() {
         <p className="hero-kicker">
           <Sparkles size={16} /> સુનતર ભવન · પાલીતાણા
         </p>
-        <h1>{slides[active].title}</h1>
-        <p className="hero-copy">{slides[active].copy}</p>
+        <h1>Jain Dharamshala in Palitana for a peaceful yatra.</h1>
+        <p className="hero-copy">
+          {slides[active].title} {slides[active].copy}
+        </p>
         <div className="hero-actions">
           <a href={whatsappHref} target="_blank" rel="noreferrer" className="button button-gold">
             <MessageCircle size={19} /> Enquire on WhatsApp
@@ -268,6 +327,10 @@ function WelcomeCarousel() {
               alt={image.alt}
               draggable={false}
               aria-hidden={index !== active}
+              width={index === 0 ? 927 : index === 1 ? 1280 : 829}
+              height={index === 0 ? 772 : index === 1 ? 853 : 758}
+              loading="lazy"
+              decoding="async"
             />
           ))}
         </div>
@@ -320,7 +383,7 @@ function Index() {
               your attention can stay on the yatra.
             </p>
             <div className="welcome-signoff">
-              <img src="/images/suntar-bhavan-mark.png" alt="" />
+              <img src="/images/suntar-bhavan-mark.png" alt="" width={256} height={280} />
               <span>
                 <strong>Seva with warmth</strong>
                 <small>For every yatri, every day</small>
@@ -345,7 +408,14 @@ function Index() {
           </div>
           <div className="room-grid">
             <article className="room-card">
-              <img src={photo(2)} alt="Standard non-AC room at Suntar Bhavan" />
+              <img
+                src={photo(2)}
+                alt="Standard non-AC room at Suntar Bhavan"
+                width={1280}
+                height={960}
+                loading="lazy"
+                decoding="async"
+              />
               <div className="room-info">
                 <div>
                   <span>Simple & airy</span>
@@ -362,7 +432,14 @@ function Index() {
               </div>
             </article>
             <article className="room-card room-card-offset">
-              <img src={photo(4)} alt="Deluxe air-conditioned room at Suntar Bhavan" />
+              <img
+                src={photo(4)}
+                alt="Deluxe air-conditioned room at Suntar Bhavan"
+                width={1280}
+                height={853}
+                loading="lazy"
+                decoding="async"
+              />
               <div className="room-info">
                 <div>
                   <span>Cool & comfortable</span>
@@ -391,7 +468,14 @@ function Index() {
 
       <section id="bhojanshala" className="dining-section">
         <div className="dining-image">
-          <img src={photo(6)} alt="Jain Bhojanshala at Suntar Bhavan" />
+          <img
+            src={photo(6)}
+            alt="Jain Bhojanshala dining area at Suntar Bhavan"
+            width={1280}
+            height={960}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
         <div className="dining-content">
           <p className="section-kicker light">Jain Bhojanshala</p>
@@ -451,6 +535,9 @@ function Index() {
                 src={photo(number)}
                 alt={`Suntar Bhavan property view ${index + 1}`}
                 loading="lazy"
+                width={number === 1 ? 829 : 1280}
+                height={number === 1 ? 758 : number === 9 ? 960 : 853}
+                decoding="async"
               />
             </figure>
           ))}
@@ -471,7 +558,13 @@ function Index() {
             </a>
           </div>
           <div className="visit-card">
-            <img src="/images/suntar-bhavan-mark.png" alt="" />
+            <img
+              src="/images/suntar-bhavan-mark.png"
+              alt=""
+              width={256}
+              height={280}
+              loading="lazy"
+            />
             <p className="section-kicker">Plan your stay</p>
             <h2>We look forward to welcoming you.</h2>
             <p className="address">

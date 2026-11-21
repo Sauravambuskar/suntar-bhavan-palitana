@@ -11,15 +11,25 @@ import {
 } from "lucide-react";
 
 import { PageShell, photo } from "@/components/site-page";
+import { breadcrumbSchema, seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/facilities")({
   head: () => ({
-    meta: [
-      { title: "Facilities | Suntar Bhavan" },
+    ...seoHead({
+      title: "Dharamshala Facilities in Palitana | Suntar Bhavan",
+      description:
+        "View Suntar Bhavan facilities: AC and non-AC rooms, Jain Bhojanshala, temple, free parking, attached bathrooms and 24-hour water.",
+      path: "/facilities",
+    }),
+    scripts: [
       {
-        name: "description",
-        content:
-          "Pilgrim-friendly facilities including rooms, Bhojanshala, temple, parking and water.",
+        type: "application/ld+json",
+        children: JSON.stringify(
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Facilities", path: "/facilities" },
+          ]),
+        ),
       },
     ],
   }),

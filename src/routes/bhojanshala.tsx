@@ -2,14 +2,25 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Clock3, HeartHandshake, Leaf, UtensilsCrossed } from "lucide-react";
 
 import { PageShell, photo } from "@/components/site-page";
+import { breadcrumbSchema, seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/bhojanshala")({
   head: () => ({
-    meta: [
-      { title: "Jain Bhojanshala | Suntar Bhavan" },
+    ...seoHead({
+      title: "Jain Bhojanshala in Palitana | Suntar Bhavan",
+      description:
+        "Fresh satvik Jain meals for yatris, served at fixed Navkarshi, lunch and Chovihar timings at Suntar Bhavan in Palitana.",
+      path: "/bhojanshala",
+    }),
+    scripts: [
       {
-        name: "description",
-        content: "Fresh satvik Jain meals served at fixed timings at Suntar Bhavan, Palitana.",
+        type: "application/ld+json",
+        children: JSON.stringify(
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Jain Bhojanshala", path: "/bhojanshala" },
+          ]),
+        ),
       },
     ],
   }),

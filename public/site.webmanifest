@@ -1,0 +1,17 @@
+{
+  "name": "Suntar Bhavan, Palitana",
+  "short_name": "Suntar Bhavan",
+  "description": "Jain dharamshala near Taleti in Palitana.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fffaf4",
+  "theme_color": "#6f1d2b",
+  "icons": [
+    {
+      "src": "/images/suntar-bhavan-mark.png",
+      "sizes": "256x280",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

@@ -2,14 +2,25 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Bath, Droplets, Fan, MessageCircle, ShieldCheck, Sparkles } from "lucide-react";
 
 import { PageShell, photo, whatsappHref } from "@/components/site-page";
+import { breadcrumbSchema, seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/rooms")({
   head: () => ({
-    meta: [
-      { title: "Rooms | Suntar Bhavan, Palitana" },
+    ...seoHead({
+      title: "AC & Non-AC Rooms in Palitana | Suntar Bhavan",
+      description:
+        "Explore clean AC and non-AC rooms with attached bathrooms and hot and cold water at Suntar Bhavan Jain dharamshala in Palitana.",
+      path: "/rooms",
+    }),
+    scripts: [
       {
-        name: "description",
-        content: "Explore AC and non-AC rooms with attached bathrooms at Suntar Bhavan, Palitana.",
+        type: "application/ld+json",
+        children: JSON.stringify(
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Rooms", path: "/rooms" },
+          ]),
+        ),
       },
     ],
   }),
@@ -35,7 +46,14 @@ function RoomsPage() {
         </div>
         <div className="page-room-grid">
           <article>
-            <img src={photo(2)} alt="Standard non-air-conditioned room" />
+            <img
+              src={photo(2)}
+              alt="Standard non-air-conditioned room at Suntar Bhavan"
+              width={1280}
+              height={960}
+              loading="lazy"
+              decoding="async"
+            />
             <div>
               <span>Simple & airy</span>
               <h3>Standard room</h3>
@@ -54,7 +72,14 @@ function RoomsPage() {
             </div>
           </article>
           <article>
-            <img src={photo(4)} alt="Deluxe air-conditioned room" />
+            <img
+              src={photo(4)}
+              alt="Deluxe air-conditioned room at Suntar Bhavan"
+              width={1280}
+              height={853}
+              loading="lazy"
+              decoding="async"
+            />
             <div>
               <span>Cool & restful</span>
               <h3>Deluxe room</h3>

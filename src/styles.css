@@ -879,7 +879,7 @@ h2 {
   padding: 125px 24px;
   background:
     linear-gradient(rgb(64 17 12 / 74%), rgb(64 17 12 / 74%)),
-    url("/images/suntar-photo-3.png") center / cover fixed;
+    url("/images/suntar-photo-3.jpg") center / cover fixed;
 }
 .visit-layout {
   display: grid;

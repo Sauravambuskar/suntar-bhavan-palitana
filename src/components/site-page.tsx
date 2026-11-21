@@ -1,7 +1,7 @@
 import { ArrowLeft, ArrowRight, Mail, MapPin, Menu, MessageCircle, Phone, X } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 
-export const photo = (number: number) => `/images/suntar-photo-${number}.png`;
+export const photo = (number: number) => `/images/suntar-photo-${number}.jpg`;
 export const whatsappHref =
   "https://wa.me/917379349473?text=Jai%20Jinendra%2C%20I%20would%20like%20to%20enquire%20about%20a%20stay%20at%20Suntar%20Bhavan%2C%20Palitana.";
 export const phoneDisplay = "+91 73793 49473";
@@ -25,7 +25,13 @@ const links = [
 function Brand({ light = false }: { light?: boolean }) {
   return (
     <a href="/" className="brand" aria-label="Suntar Bhavan home">
-      <img src="/images/suntar-bhavan-mark.png" alt="" className="brand-mark" />
+      <img
+        src="/images/suntar-bhavan-mark.png"
+        alt=""
+        className="brand-mark"
+        width={256}
+        height={280}
+      />
       <span>
         <strong className={light ? "text-white" : "text-maroon"}>Suntar Bhavan</strong>
         <small className={light ? "text-white/70" : "text-muted-foreground"}>
@@ -188,7 +194,7 @@ export function PageShell({
     <main className="inner-page">
       <PageHeader />
       <section className="page-hero">
-        <img src={image} alt="" />
+        <img src={image} alt="" width={1280} height={853} fetchPriority="high" decoding="async" />
         <div className="page-hero-shade" />
         <div className="page-hero-content section-shell">
           <a href="/" className="page-back">
