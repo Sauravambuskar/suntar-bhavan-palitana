@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://suntarbhavan.in/sitemap.xml
+Sitemap: https://www.suntarbhavan.in/sitemap.xml

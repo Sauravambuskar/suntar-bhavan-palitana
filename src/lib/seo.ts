@@ -1,4 +1,4 @@
-export const siteUrl = "https://suntarbhavan.in";
+export const siteUrl = "https://www.suntarbhavan.in";
 export const siteName = "Suntar Bhavan";
 export const defaultSocialImage = `${siteUrl}/images/suntar-photo-3.jpg`;
 
