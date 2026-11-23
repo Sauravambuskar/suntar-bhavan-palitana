@@ -62,7 +62,7 @@ export const Route = createFileRoute("/")({
               description:
                 "A peaceful Jain dharamshala offering rooms, Jain meals and pilgrim-friendly facilities near Taleti in Palitana.",
               foundingDate: "2021",
-              telephone: "+91-73793-49473",
+              telephone: "+91-92824-52502",
               email: "sk6539985@gmail.com",
               priceRange: "₹",
               currenciesAccepted: "INR",
@@ -84,7 +84,7 @@ export const Route = createFileRoute("/")({
               ].map((name) => ({ "@type": "LocationFeatureSpecification", name, value: true })),
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: "+91-73793-49473",
+                telephone: "+91-92824-52502",
                 contactType: "reservations",
                 availableLanguage: ["English", "Hindi", "Gujarati"],
               },

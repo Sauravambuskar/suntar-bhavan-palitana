@@ -3,9 +3,9 @@ import { useEffect, useState, type ReactNode } from "react";
 
 export const photo = (number: number) => `/images/suntar-photo-${number}.jpg`;
 export const whatsappHref =
-  "https://wa.me/917379349473?text=Jai%20Jinendra%2C%20I%20would%20like%20to%20enquire%20about%20a%20stay%20at%20Suntar%20Bhavan%2C%20Palitana.";
-export const phoneDisplay = "+91 73793 49473";
-export const phoneHref = "tel:+917379349473";
+  "https://wa.me/919282452502?text=Jai%20Jinendra%2C%20I%20would%20like%20to%20enquire%20about%20a%20stay%20at%20Suntar%20Bhavan%2C%20Palitana.";
+export const phoneDisplay = "+91 92824 52502";
+export const phoneHref = "tel:+919282452502";
 export const emailAddress = "sk6539985@gmail.com";
 export const emailHref = "mailto:sk6539985@gmail.com";
 export const mapsHref =
